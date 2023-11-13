@@ -36,6 +36,15 @@ state = {
   contactsList = () => {
     return  this.state.contacts.filter(name => name.name.toLowerCase().includes(this.state.filter.toLowerCase()))
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('didUpdate');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+  }
+  componentDidMount() {
+    this.setState({ contacts: JSON.parse(localStorage.getItem('contacts'))});
+  }
   render() {
     return (
 <Sections>
