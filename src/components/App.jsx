@@ -42,7 +42,11 @@ state = {
     }
   }
   componentDidMount() {
-    this.setState({ contacts: JSON.parse(localStorage.getItem('contacts'))});
+    const dataLocStor = JSON.parse(localStorage.getItem('contacts'));
+    if (dataLocStor) {
+      this.setState({ contacts: dataLocStor});
+    }
+    
   }
   render() {
     return (
